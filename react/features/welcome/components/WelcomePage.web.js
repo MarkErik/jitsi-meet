@@ -193,7 +193,7 @@ class WelcomePage extends AbstractWelcomePage {
                                 { app: APP_NAME }) }
                         </p>
                     </div>
-                    <div id = 'enter_room'>
+                    {/* <div id = 'enter_room'>
                         <div className = 'enter-room-input-container'>
                             <div className = 'enter-room-title'>
                                 { t('welcomepage.enterRoomTitle') }
@@ -223,7 +223,7 @@ class WelcomePage extends AbstractWelcomePage {
                                     : t('welcomepage.go')
                             }
                         </div>
-                    </div>
+                    </div> */}
                     { this._renderTabs() }
                 </div>
                 { showAdditionalContent
