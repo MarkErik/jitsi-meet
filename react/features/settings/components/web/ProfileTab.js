@@ -104,7 +104,7 @@ class ProfileTab extends AbstractDialogTab<Props> {
                             type = 'text'
                             value = { displayName } />
                     </div>
-                    <div className = 'profile-edit-field'>
+                    {/* <div className = 'profile-edit-field'>
                         <FieldTextStateless
                             compact = { true }
                             id = 'setEmail'
@@ -118,7 +118,7 @@ class ProfileTab extends AbstractDialogTab<Props> {
                             shouldFitContainer = { true }
                             type = 'text'
                             value = { email } />
-                    </div>
+                    </div> */}
                 </div>
                 { authEnabled && this._renderAuth() }
             </div>
