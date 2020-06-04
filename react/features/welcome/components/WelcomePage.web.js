@@ -186,11 +186,10 @@ class WelcomePage extends AbstractWelcomePage {
                     <div className = 'header-image' />
                     <div className = 'header-text'>
                         <h1 className = 'header-text-title'>
-                            { t('welcomepage.title') }
+                            Welcome to Private Video Therapy{"\n"}with Dr. Jamie Chiu
                         </h1>
                         <p className = 'header-text-description'>
-                            { t('welcomepage.appDescription',
-                                { app: APP_NAME }) }
+                            Video therapy sessions with Jamie are private, secure, and all communication is fully encrypted. For the best experience, please join using the Google Chrome browser.
                         </p>
                     </div>
                     {/* <div id = 'enter_room'>
