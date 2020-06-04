@@ -100,7 +100,7 @@ $sidebarWidth: 375px;
  /**
  * Misc.
  */
-$borderRadius: 4px;
+$borderRadius: 6px;
 $defaultWatermarkLink: '../images/watermark.png';
 $popoverMenuPadding: 13px;
 $happySoftwareBackground: transparent;
@@ -170,7 +170,7 @@ $watermarkHeight: 74px;
  */
 $welcomePageDescriptionColor: #fff;
 $welcomePageFontFamily: inherit;
-$welcomePageBackground: linear-gradient(-90deg, #1251AE 0%, #0074FF 50%, #1251AE 100%);
+$welcomePageBackground: #1251AE;
 $welcomePageTitleColor: #fff;
 
 $welcomePageHeaderBackground: none;
