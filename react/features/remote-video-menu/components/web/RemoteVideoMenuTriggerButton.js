@@ -127,7 +127,7 @@ class RemoteVideoMenuTriggerButton extends Component<Props> {
     render() {
         const content = this._renderRemoteVideoMenu();
 
-        if (!content & !_isModerator) {
+        if (!content) {
             return null;
         }
 
