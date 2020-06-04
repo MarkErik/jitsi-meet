@@ -51,7 +51,7 @@ class PrivateMessageMenuButton extends Component<Props> {
     render() {
         const { participantID, t, _hidden } = this.props;
 
-        if (true) {
+        if (_hidden) {
             return null;
         }
 
