@@ -232,14 +232,14 @@ class RemoteVideoMenuTriggerButton extends Component<Props> {
         //         participantID = { participantID } />
         // );
 
-        if (onVolumeChange) {
-            buttons.push(
-                <VolumeSlider
-                    initialValue = { initialVolumeValue }
-                    key = 'volume-slider'
-                    onChange = { onVolumeChange } />
-            );
-        }
+        // if (onVolumeChange) {
+        //     buttons.push(
+        //         <VolumeSlider
+        //             initialValue = { initialVolumeValue }
+        //             key = 'volume-slider'
+        //             onChange = { onVolumeChange } />
+        //     );
+        // }
 
         if (buttons.length > 0) {
             return (
