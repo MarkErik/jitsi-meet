@@ -951,9 +951,9 @@ class Toolbox extends Component<Props, State> {
     _renderOverflowMenuContent() {
         const {
             _feedbackConfigured,
-            _fullScreen,
+            //_fullScreen,
             _screensharing,
-            _sharingVideo,
+            //_sharingVideo,
             t
         } = this.props;
 
@@ -966,26 +966,26 @@ class Toolbox extends Component<Props, State> {
                 && <OverflowMenuVideoQualityItem
                     key = 'videoquality'
                     onClick = { this._onToolbarOpenVideoQuality } />,
-            this._shouldShowButton('fullscreen')
-                && <OverflowMenuItem
-                    accessibilityLabel = { t('toolbar.accessibilityLabel.fullScreen') }
-                    icon = { _fullScreen ? IconExitFullScreen : IconFullScreen }
-                    key = 'fullscreen'
-                    onClick = { this._onToolbarToggleFullScreen }
-                    text = { _fullScreen ? t('toolbar.exitFullScreen') : t('toolbar.enterFullScreen') } />,
+            // this._shouldShowButton('fullscreen')
+            //     && <OverflowMenuItem
+            //         accessibilityLabel = { t('toolbar.accessibilityLabel.fullScreen') }
+            //         icon = { _fullScreen ? IconExitFullScreen : IconFullScreen }
+            //         key = 'fullscreen'
+            //         onClick = { this._onToolbarToggleFullScreen }
+            //         text = { _fullScreen ? t('toolbar.exitFullScreen') : t('toolbar.enterFullScreen') } />,
             <LiveStreamButton
                 key = 'livestreaming'
                 showLabel = { true } />,
             <RecordButton
                 key = 'record'
                 showLabel = { true } />,
-            this._shouldShowButton('sharedvideo')
-                && <OverflowMenuItem
-                    accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
-                    icon = { IconShareVideo }
-                    key = 'sharedvideo'
-                    onClick = { this._onToolbarToggleSharedVideo }
-                    text = { _sharingVideo ? t('toolbar.stopSharedVideo') : t('toolbar.sharedvideo') } />,
+            // this._shouldShowButton('sharedvideo')
+            //     && <OverflowMenuItem
+            //         accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
+            //         icon = { IconShareVideo }
+            //         key = 'sharedvideo'
+            //         onClick = { this._onToolbarToggleSharedVideo }
+            //         text = { _sharingVideo ? t('toolbar.stopSharedVideo') : t('toolbar.sharedvideo') } />,
             this._shouldShowButton('etherpad')
                 && <SharedDocumentButton
                     key = 'etherpad'
@@ -1157,10 +1157,14 @@ class Toolbox extends Component<Props, State> {
             _chatOpen,
             _overflowMenuVisible,
             _raisedHand,
+            _fullScreen,
+            _sharingVideo,
+            _isModerator,
             t
         } = this.props;
         const overflowMenuContent = this._renderOverflowMenuContent();
-        const overflowHasItems = Boolean(overflowMenuContent.filter(child => child).length);
+        //const overflowHasItems = Boolean(overflowMenuContent.filter(child => child).length);
+        const overflowHasItems = false;
         const toolbarAccLabel = 'toolbar.accessibilityLabel.moreActionsMenu';
         const buttonsLeft = [];
         const buttonsRight = [];
@@ -1188,12 +1192,15 @@ class Toolbox extends Component<Props, State> {
         if (this._shouldShowButton('closedcaptions')) {
             buttonsLeft.push('closedcaptions');
         }
+
         if (overflowHasItems) {
             buttonsRight.push('overflowmenu');
         }
+
         if (this._shouldShowButton('invite')) {
             buttonsRight.push('invite');
         }
+
         if (this._shouldShowButton('security') || this._shouldShowButton('info')) {
             buttonsRight.push('security');
         }
@@ -1201,6 +1208,15 @@ class Toolbox extends Component<Props, State> {
         if (this._shouldShowButton('tileview')) {
             buttonsRight.push('tileview');
         }
+
+        if (this._shouldShowButton('fullscreen')) {
+            buttonsRight.push('fullscreen');
+        }
+
+        if (this._shouldShowButton('sharedvideo') && _isModerator) {
+            buttonsRight.push('sharedvideo');
+        }
+
         if (this._shouldShowButton('localrecording')) {
             buttonsRight.push('localrecording');
         }
@@ -1239,6 +1255,7 @@ class Toolbox extends Component<Props, State> {
 
         return (
             <div className = 'toolbox-content'>
+                
                 <div className = 'button-group-left'>
                     { buttonsLeft.indexOf('desktop') !== -1
                         && this._renderDesktopSharingButton() }
@@ -1264,12 +1281,14 @@ class Toolbox extends Component<Props, State> {
                             && <ClosedCaptionButton />
                     }
                 </div>
+                
                 <div className = 'button-group-center'>
                     { this._renderAudioButton() }
                     <HangupButton
                         visible = { this._shouldShowButton('hangup') } />
                     { this._renderVideoButton() }
                 </div>
+
                 <div className = 'button-group-right'>
                     { buttonsRight.indexOf('localrecording') !== -1
                         && <LocalRecordingButton
@@ -1279,6 +1298,23 @@ class Toolbox extends Component<Props, State> {
                     }
                     { buttonsRight.indexOf('tileview') !== -1
                         && <TileViewButton /> }
+
+                    { buttonsRight.indexOf('fullscreen') !== -1
+                        && <ToolbarButton
+                            accessibilityLabel = { t('toolbar.accessibilityLabel.fullScreen') }
+                            icon = { _fullScreen ? IconExitFullScreen : IconFullScreen }
+                            key = 'fullscreen'
+                            onClick = { this._onToolbarToggleFullScreen }
+                            tooltip = {  _fullScreen ? t('toolbar.exitFullScreen') : t('toolbar.enterFullScreen') } /> }
+                    
+                    { buttonsRight.indexOf('sharedvideo') !== -1
+                        && <ToolbarButton
+                            accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
+                            icon = { IconShareVideo }
+                            key = 'sharedvideo'
+                            onClick = { this._onToolbarToggleSharedVideo }
+                            tooltip = {  _sharingVideo ? t('toolbar.stopSharedVideo') : t('toolbar.sharedvideo') } /> }
+                    
                     { buttonsRight.indexOf('invite') !== -1
                         && <ToolbarButton
                             accessibilityLabel =
@@ -1288,7 +1324,7 @@ class Toolbox extends Component<Props, State> {
                             tooltip = { t('toolbar.invite') } /> }
                     { buttonsRight.indexOf('security') !== -1
                         && <SecurityDialogButton customClass = 'security-toolbar-button' /> }
-                    { buttonsRight.indexOf('overflowmenu') !== -1
+                    {/* { buttonsRight.indexOf('overflowmenu') !== -1
                         && <OverflowMenuButton
                             isOpen = { _overflowMenuVisible }
                             onVisibilityChange = { this._onSetOverflowVisible }>
@@ -1297,7 +1333,7 @@ class Toolbox extends Component<Props, State> {
                                 className = 'overflow-menu'>
                                 { overflowMenuContent }
                             </ul>
-                        </OverflowMenuButton> }
+                        </OverflowMenuButton> } */}
                 </div>
             </div>);
     }
