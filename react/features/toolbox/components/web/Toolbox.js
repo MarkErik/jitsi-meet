@@ -102,6 +102,11 @@ type Props = {
     _conference: Object,
 
     /**
+     * Whether or not the participant is a conference moderator.
+     */
+    _isModerator: boolean,
+
+    /**
      * The tooltip key to use when screensharing is disabled. Or undefined
      * if non to be shown and the button to be hidden.
      */
