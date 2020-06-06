@@ -26,7 +26,8 @@ import {
 import {
     getLocalParticipant,
     getParticipants,
-    participantUpdated
+    participantUpdated,
+    PARTICIPANT_ROLE
 } from '../../../base/participants';
 import { connect, equals } from '../../../base/redux';
 import { OverflowMenuItem } from '../../../base/toolbox';
@@ -1368,6 +1369,7 @@ class Toolbox extends Component<Props, State> {
  */
 function _mapStateToProps(state) {
     const { conference, locked } = state['features/base/conference'];
+    const participant = getLocalParticipant(state);
     let { desktopSharingEnabled } = state['features/base/conference'];
     const {
         callStatsID,
@@ -1408,6 +1410,7 @@ function _mapStateToProps(state) {
     return {
         _chatOpen: state['features/chat'].isOpen,
         _conference: conference,
+        _isModerator: Boolean(participant?.role === PARTICIPANT_ROLE.MODERATOR),
         _desktopSharingEnabled: desktopSharingEnabled,
         _desktopSharingDisabledTooltipKey: desktopSharingDisabledTooltipKey,
         _dialog: Boolean(state['features/base/dialog'].component),
