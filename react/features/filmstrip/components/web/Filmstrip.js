@@ -219,13 +219,6 @@ class Filmstrip extends Component <Props> {
                     className = { this.props._videosClassName }
                     id = 'remoteVideos'>
                     <div
-                        className = 'filmstrip__videos'
-                        id = 'filmstripLocalVideo'
-                        onMouseOut = { this._onMouseOut }
-                        onMouseOver = { this._onMouseOver }>
-                        <div id = 'filmstripLocalVideoThumbnail' />
-                    </div>
-                    <div
                         className = { remoteVideosWrapperClassName }
                         id = 'filmstripRemoteVideos'>
                         {/*
@@ -241,6 +234,13 @@ class Filmstrip extends Component <Props> {
                             style = { filmstripRemoteVideosContainerStyle }>
                             <div id = 'localVideoTileViewContainer' />
                         </div>
+                    </div>
+                    <div
+                        className = 'filmstrip__videos'
+                        id = 'filmstripLocalVideo'
+                        onMouseOut = { this._onMouseOut }
+                        onMouseOver = { this._onMouseOver }>
+                        <div id = 'filmstripLocalVideoThumbnail' />
                     </div>
                 </div>
             </div>
