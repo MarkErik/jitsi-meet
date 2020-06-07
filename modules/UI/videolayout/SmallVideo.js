@@ -14,7 +14,9 @@ import { i18next } from '../../../react/features/base/i18n';
 import {
     getParticipantCount,
     getPinnedParticipant,
-    pinParticipant
+    pinParticipant,
+    getLocalParticipant,
+    PARTICIPANT_ROLE
 } from '../../../react/features/base/participants';
 import { ConnectionIndicator } from '../../../react/features/connection-indicator';
 import { DisplayName } from '../../../react/features/display-name';
@@ -720,6 +722,8 @@ export default class SmallVideo {
         const state = APP.store.getState();
         const currentLayout = getCurrentLayout(state);
         const participantCount = getParticipantCount(state);
+        const localParticipant = getLocalParticipant(state);
+        const isModerator = localParticipant.role === PARTICIPANT_ROLE.MODERATOR;
         let statsPopoverPosition, tooltipPosition;
 
         if (currentLayout === LAYOUTS.TILE_VIEW) {
@@ -740,7 +744,7 @@ export default class SmallVideo {
                         <AtlasKitThemeProvider mode = 'dark'>
                             { this._showConnectionIndicator
                                 ? <ConnectionIndicator
-                                    alwaysVisible = { currentLayout === LAYOUTS.TILE_VIEW }
+                                    alwaysVisible = { currentLayout === LAYOUTS.TILE_VIEW && isModerator }
                                     connectionStatus = { this._connectionStatus }
                                     iconSize = { iconSize }
                                     isLocalVideo = { this.isLocal }
