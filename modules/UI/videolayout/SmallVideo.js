@@ -718,7 +718,7 @@ export default class SmallVideo {
                         <AtlasKitThemeProvider mode = 'dark'>
                             { this._showConnectionIndicator
                                 ? <ConnectionIndicator
-                                    alwaysVisible = { showConnectionIndicator }
+                                    alwaysVisible = { currentLayout === LAYOUTS.TILE_VIEW }
                                     connectionStatus = { this._connectionStatus }
                                     iconSize = { iconSize }
                                     isLocalVideo = { this.isLocal }
