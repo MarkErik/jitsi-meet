@@ -31,7 +31,7 @@ export const sounds = new Map([
     [
         OUTGOING_CALL_RINGING_SOUND_ID,
         {
-            file: 'outgoingRinging.wav',
+            file: 'ring.wav',
             options: { loop: true }
         }
     ],
@@ -40,5 +40,5 @@ export const sounds = new Map([
      * The name of the sound file which will be played when outgoing call is
      * started.
      */
-    [ OUTGOING_CALL_START_SOUND_ID, { file: 'outgoingStart.wav' } ]
+    [ OUTGOING_CALL_START_SOUND_ID, { file: 'ring.wav' } ]
 ]);
