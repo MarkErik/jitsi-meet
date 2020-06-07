@@ -612,7 +612,7 @@ class SharedVideoContainer extends LargeContainer {
 
 
         return new Promise(resolve => {
-            this.$iframe.fadeIn(300, () => {
+            this.$iframe.fadeIn(500, () => {
                 self.bodyBackground = document.body.style.background;
                 document.body.style.background = 'black';
                 this.$iframe.css({ opacity: 1 });
@@ -631,7 +631,7 @@ class SharedVideoContainer extends LargeContainer {
         APP.store.dispatch(dockToolbox(false));
 
         return new Promise(resolve => {
-            this.$iframe.fadeOut(300, () => {
+            this.$iframe.fadeOut(500, () => {
                 document.body.style.background = self.bodyBackground;
                 this.$iframe.css({ opacity: 0 });
                 resolve();
