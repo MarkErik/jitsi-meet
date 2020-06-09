@@ -44,7 +44,7 @@
     },
     "calendarSync": {
         "addMeetingURL": "Add a meeting link",
-        "confirmAddLink": "Do you want to add a Jitsi link to this event?",
+        "confirmAddLink": "Do you want to add a link to this event?",
         "error": {
             "appConfiguration": "Calendar integration is not properly configured.",
             "generic": "An error has occurred. Please check your calendar settings or try refreshing the calendar.",
@@ -203,7 +203,7 @@
         "externalInstallationTitle": "Extension required",
         "goToStore": "Go to the webstore",
         "gracefulShutdown": "Our service is currently down for maintenance. Please try again later.",
-        "IamHost": "I am the host",
+        "IamHost": "Enter Host Password",
         "incorrectRoomLockPassword": "Incorrect password",
         "incorrectPassword": "Incorrect username or password",
         "inlineInstallationMsg": "You need to install our desktop sharing extension.",
@@ -302,9 +302,9 @@
         "transcribing": "Transcribing",
         "unlockRoom": "Remove meeting $t(lockRoomPassword)",
         "userPassword": "user password",
-        "WaitForHostMsg": "The conference <b>{{room}}</b> has not yet started. If you are the host then please authenticate. Otherwise, please wait for the host to arrive.",
-        "WaitForHostMsgWOk": "The conference <b>{{room}}</b> has not yet started. If you are the host then please press Ok to authenticate. Otherwise, please wait for the host to arrive.",
-        "WaitingForHost": "Waiting for the host ...",
+        "WaitForHostMsg": "The session <b>{{room}}</b> has not yet started.",
+        "WaitForHostMsgWOk": "The session <b>{{room}}</b> has not yet started.",
+        "WaitingForHost": "Dr. Jamie Chiu will start the session soon.",
         "Yes": "Yes",
         "yourEntireScreen": "Your entire screen"
     },
@@ -330,7 +330,7 @@
         "answer": "Answer",
         "audioCallTitle": "Incoming call",
         "decline": "Dismiss",
-        "productLabel": "from Jitsi Meet",
+        "productLabel": "Private",
         "videoCallTitle": "Incoming video call"
     },
     "info": {
@@ -491,7 +491,7 @@
         "newDeviceAudioTitle": "New audio device detected",
         "newDeviceAction": "Use",
         "OldElectronAPPTitle": "Security vulnerability!",
-        "oldElectronClientDescription1": "You appear to be using an old version of the Jitsi Meet client which has known security vulnerabilities. Please make sure you update to our ",
+        "oldElectronClientDescription1": "You appear to be using an old version of the desktop client which has known security vulnerabilities. Please make sure you update to our ",
         "oldElectronClientDescription2": "latest build",
         "oldElectronClientDescription3": " now!"
     },
