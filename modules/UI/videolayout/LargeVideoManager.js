@@ -241,10 +241,7 @@ export default class LargeVideoManager {
             let promise;
 
             // do not show stream if video is muted
-            // but we still should show watermark
             if (showAvatar) {
-                this.showWatermark(true);
-
                 // If the intention of this switch is to show the avatar
                 // we need to make sure that the video is hidden
                 promise = container.hide();
