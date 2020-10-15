@@ -5,7 +5,10 @@ import type { Dispatch } from 'redux';
 import { getFeatureFlag, VIDEO_SHARE_BUTTON_ENABLED } from '../../base/flags';
 import { translate } from '../../base/i18n';
 import { IconShareVideo } from '../../base/icons';
-import { getLocalParticipant } from '../../base/participants';
+import {
+    getLocalParticipant,
+    isLocalParticipantModerator
+} from '../../../base/participants';
 import { connect } from '../../base/redux';
 import { AbstractButton, type AbstractButtonProps } from '../../base/toolbox/components';
 import { toggleSharedVideo } from '../actions';
@@ -95,9 +98,10 @@ class VideoShareButton extends AbstractButton<Props, *> {
  * @returns {Props}
  */
 function _mapStateToProps(state, ownProps): Object {
+    const isModerator = isLocalParticipantModerator(state);
     const { ownerId, status: sharedVideoStatus } = state['features/youtube-player'];
     const localParticipantId = getLocalParticipant(state).id;
-    const enabled = getFeatureFlag(state, VIDEO_SHARE_BUTTON_ENABLED, true) && isLocalParticipantModerator(state);
+    const enabled = getFeatureFlag(state, VIDEO_SHARE_BUTTON_ENABLED, true) && isModerator;
     const { visible = enabled } = ownProps;
 
     if (ownerId !== localParticipantId) {
