@@ -22,6 +22,7 @@ import {
 import { ConnectionIndicator } from '../../../react/features/connection-indicator';
 import { DisplayName } from '../../../react/features/display-name';
 import {
+    DominantSpeakerIndicator,
     RaisedHandIndicator,
     StatusIndicators
 } from '../../../react/features/filmstrip';
@@ -119,6 +120,13 @@ export default class SmallVideo {
          */
         this._showConnectionIndicator = !interfaceConfig.CONNECTION_INDICATOR_DISABLED;
 
+        /**
+         * Whether or not the dominant speaker indicator should be displayed.
+         *
+         * @private
+         * @type {boolean}
+         */
+        this._showDominantSpeaker = false;
 
         /**
          * Whether or not the raised hand indicator should be displayed.
@@ -592,6 +600,31 @@ export default class SmallVideo {
         }
     }
 
+    /**
+     * Shows or hides the dominant speaker indicator.
+     * @param show whether to show or hide.
+     */
+    showDominantSpeakerIndicator(show) {
+        // Don't create and show dominant speaker indicator if
+        // DISABLE_DOMINANT_SPEAKER_INDICATOR is true
+        if (true) {
+            return;
+        }
+
+        if (!this.container) {
+            logger.warn(`Unable to set dominant speaker indicator - ${this.videoSpanId} does not exist`);
+
+            return;
+        }
+        if (this._showDominantSpeaker === show) {
+            return;
+        }
+
+        this._showDominantSpeaker = show;
+        this.$container.toggleClass('active-speaker', this._showDominantSpeaker);
+        this.updateIndicators();
+        this.updateView();
+    }
 
     /**
      * Shows or hides the raised hand indicator.
@@ -686,9 +719,9 @@ export default class SmallVideo {
 
         const { NORMAL = 8 } = interfaceConfig.INDICATOR_FONT_SIZES || {};
         const iconSize = NORMAL;
+        const state = APP.store.getState();
         const isModerator = isLocalParticipantModerator(state);
         const showConnectionIndicator = this.videoIsHovered && isModerator;
-        const state = APP.store.getState();
         const currentLayout = getCurrentLayout(state);
         const participantCount = getParticipantCount(state);
         const localParticipant = getLocalParticipant(state);
