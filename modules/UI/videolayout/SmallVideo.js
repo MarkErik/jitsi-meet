@@ -16,12 +16,12 @@ import {
     getPinnedParticipant,
     pinParticipant,
     getLocalParticipant,
+    isLocalParticipantModerator,
     PARTICIPANT_ROLE
 } from '../../../react/features/base/participants';
 import { ConnectionIndicator } from '../../../react/features/connection-indicator';
 import { DisplayName } from '../../../react/features/display-name';
 import {
-    DominantSpeakerIndicator,
     RaisedHandIndicator,
     StatusIndicators
 } from '../../../react/features/filmstrip';
@@ -119,13 +119,6 @@ export default class SmallVideo {
          */
         this._showConnectionIndicator = !interfaceConfig.CONNECTION_INDICATOR_DISABLED;
 
-        /**
-         * Whether or not the dominant speaker indicator should be displayed.
-         *
-         * @private
-         * @type {boolean}
-         */
-        this._showDominantSpeaker = false;
 
         /**
          * Whether or not the raised hand indicator should be displayed.
@@ -599,31 +592,6 @@ export default class SmallVideo {
         }
     }
 
-    /**
-     * Shows or hides the dominant speaker indicator.
-     * @param show whether to show or hide.
-     */
-    showDominantSpeakerIndicator(show) {
-        // Don't create and show dominant speaker indicator if
-        // DISABLE_DOMINANT_SPEAKER_INDICATOR is true
-        if (interfaceConfig.DISABLE_DOMINANT_SPEAKER_INDICATOR) {
-            return;
-        }
-
-        if (!this.container) {
-            logger.warn(`Unable to set dominant speaker indicator - ${this.videoSpanId} does not exist`);
-
-            return;
-        }
-        if (this._showDominantSpeaker === show) {
-            return;
-        }
-
-        this._showDominantSpeaker = show;
-        this.$container.toggleClass('active-speaker', this._showDominantSpeaker);
-        this.updateIndicators();
-        this.updateView();
-    }
 
     /**
      * Shows or hides the raised hand indicator.
@@ -702,7 +670,7 @@ export default class SmallVideo {
     }
 
     /**
-     * Updates the React element responsible for showing connection status, dominant
+     * Updates the React element responsible for showing connection status, 
      * speaker, and raised hand icons. Uses instance variables to get the necessary
      * state to display. Will create the React element if not already created.
      *
@@ -718,12 +686,12 @@ export default class SmallVideo {
 
         const { NORMAL = 8 } = interfaceConfig.INDICATOR_FONT_SIZES || {};
         const iconSize = NORMAL;
-        const showConnectionIndicator = this.videoIsHovered || !interfaceConfig.CONNECTION_INDICATOR_AUTO_HIDE_ENABLED;
+        const isModerator = isLocalParticipantModerator(state);
+        const showConnectionIndicator = this.videoIsHovered && isModerator;
         const state = APP.store.getState();
         const currentLayout = getCurrentLayout(state);
         const participantCount = getParticipantCount(state);
         const localParticipant = getLocalParticipant(state);
-        const isModerator = localParticipant.role === PARTICIPANT_ROLE.MODERATOR;
         let statsPopoverPosition, tooltipPosition;
 
         if (currentLayout === LAYOUTS.TILE_VIEW) {
@@ -756,11 +724,6 @@ export default class SmallVideo {
                                 iconSize = { iconSize }
                                 participantId = { this.id }
                                 tooltipPosition = { tooltipPosition } />
-                            { this._showDominantSpeaker && participantCount > 2
-                                ? <DominantSpeakerIndicator
-                                    iconSize = { iconSize }
-                                    tooltipPosition = { tooltipPosition } />
-                                : null }
                         </AtlasKitThemeProvider>
                     </div>
                 </I18nextProvider>
@@ -826,7 +789,7 @@ export default class SmallVideo {
     }
 
     /**
-     * Removes the React element responsible for showing connection status, dominant
+     * Removes the React element responsible for showing connection status, 
      * speaker, and raised hand icons.
      *
      * @private
