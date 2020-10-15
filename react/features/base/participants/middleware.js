@@ -328,20 +328,20 @@ function _maybePlaySounds({ getState, dispatch }, action) {
     // nor when the user is joining past the "startAudioMuted" limit.
     // The intention there was to not play user joined notification in big
     // conferences where 100th person is joining.
-    if (!action.participant.local
-            && (!startAudioMuted
-                || getParticipantCount(state) < startAudioMuted)) {
-        if (action.type === PARTICIPANT_JOINED) {
-            const { presence } = action.participant;
+    // if (!action.participant.local
+    //         && (!startAudioMuted
+    //             || getParticipantCount(state) < startAudioMuted)) {
+    //     if (action.type === PARTICIPANT_JOINED) {
+    //         const { presence } = action.participant;
 
-            // The sounds for the poltergeist are handled by features/invite.
-            if (presence !== INVITED && presence !== CALLING) {
-                dispatch(playSound(PARTICIPANT_JOINED_SOUND_ID));
-            }
-        } else if (action.type === PARTICIPANT_LEFT) {
-            dispatch(playSound(PARTICIPANT_LEFT_SOUND_ID));
-        }
-    }
+    //         // The sounds for the poltergeist are handled by features/invite.
+    //         if (presence !== INVITED && presence !== CALLING) {
+    //             dispatch(playSound(PARTICIPANT_JOINED_SOUND_ID));
+    //         }
+    //     } else if (action.type === PARTICIPANT_LEFT) {
+    //         dispatch(playSound(PARTICIPANT_LEFT_SOUND_ID));
+    //     }
+    // }
 }
 
 /**
