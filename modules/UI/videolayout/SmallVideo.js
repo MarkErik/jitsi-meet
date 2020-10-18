@@ -118,7 +118,7 @@ export default class SmallVideo {
          * @private
          * @type {boolean}
          */
-        this._showConnectionIndicator = !interfaceConfig.CONNECTION_INDICATOR_DISABLED;
+        this._showConnectionIndicator = true;
 
         /**
          * Whether or not the dominant speaker indicator should be displayed.
