@@ -344,7 +344,6 @@ class Toolbox extends Component<Props, State> {
             this._onResize();
         }
     }
-
     /**
      * Removes keyboard shortcuts registered by this component.
      *
