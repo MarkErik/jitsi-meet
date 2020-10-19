@@ -42,6 +42,13 @@
 }
 
 /**
+ * Override @atlaskit/theme styling for the main homepage background color
+ */
+.tOoji {
+    background-color: rgb(145, 190, 224);
+}
+
+/**
  * Override @atlaskit/InlineDialog styling for the overflowmenu so it displays
  * with the correct height.
  */
