@@ -303,7 +303,7 @@
         "tokenAuthFailedTitle": "Authentication failed",
         "transcribing": "Transcribing",
         "unlockRoom": "Remove meeting $t(lockRoomPassword)",
-        "userPassword": "user password",
+        "userPassword": "Meeting Owner Password",
         "WaitForHostMsg": "The session <b>{{room}}</b> has not yet started.",
         "WaitForHostMsgWOk": "The session <b>{{room}}</b> has not yet started.",
         "WaitingForHost": "Dr. Jamie Chiu will start the session soon.",
@@ -515,8 +515,8 @@
         "connectedWithAudioQ": "You’re connected with audio?",
         "connection": {
            "good": "Your internet connection looks good!",
-           "nonOptimal": "Your internet connection is not optimal",
-           "poor": "You have a poor internet connection"
+           "nonOptimal": "Your internet connection appears to be a bit slow.",
+           "poor": "Your internet connection appears to be a bit slow."
         },
         "connectionDetails": {
           "audioClipping": "We expect your audio to be clipped.",

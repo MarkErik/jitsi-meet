@@ -17,10 +17,10 @@ function getPasswordInputHtml() {
     return `
         <input name="username" type="text"
                class="input-control"
-               placeholder=${placeholder} autofocus>
+               placeholder="Meeting Owner" autofocus>
         <input name="password" type="password"
                class="input-control"
-               data-i18n="[placeholder]dialog.userPassword">`;
+               placeholder="Meeting Owner Password">`;
 }
 
 /**
