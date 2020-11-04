@@ -28,6 +28,10 @@
         }
     }
 
+    .filmstrip__videos .videocontainer>video{
+        transform: scaleX(-1);
+    }
+
     #remoteVideos {
         /**
          * Height is modified with an inline style in horizontal filmstrip mode

@@ -248,6 +248,10 @@
     height: 100%;
 }
 
+#largeVideoWrapper>video {
+    transform: scaleX(-1);
+}
+
 #etherpad {
     text-align: center;
 }
@@ -426,7 +430,7 @@
 .videocontainer>span.audioindicator,
 .videocontainer>.audioindicator-container {
     position: absolute;
-    display: inline-block;
+    display: none;
     left: 6px;
     top: 50%;
     margin-top: -17px;
